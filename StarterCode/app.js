@@ -92,7 +92,8 @@ barbuild();
 
 
 //bubble chart function
-var bubble = d3.select("#bubble")
+//var bubble = d3.select("#bubble")
+
 // * Use `otu_ids` for the x values.
 
 // * Use `sample_values` for the y values.
