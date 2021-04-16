@@ -10,7 +10,7 @@
    d3.select("tbody");
 
     //dropdown value selector
-    d3.selectAll("#selDataset").on("change", optionChanged);
+    d3.select("#selDataset").on("change", optionChanged);
 
     //function for checking value from dropdown
     function optionChanged() {
@@ -23,7 +23,7 @@
     console.log(idselected)
     demoindex;
     samplesindex;
-    }
+    })
     var index_pos_demo = 0;
     var index_pos_samp = 0;
     var index = 0;
@@ -36,11 +36,11 @@
         d3.event.preventDefault()
         if (metadata.id !== idselected)
             index +=1;
-        elseif (metadata.id === idselected)
+        else if (metadata.id === idselected)
         {
             index_pos_demo = index;
         };
-    var demo_values = metadata[index_pos] 
+    var demo_values = metadata[index_pos_demo] 
     console.log(demo_values);
     return demo_values
    };
@@ -48,7 +48,7 @@
     d3.event.preventDefault()
     if (samples.id !== idselected)
         index2 +=1;
-    elseif(samples.id === idselected)
+    else if(samples.id === idselected)
     {
         index_pos_samp = index2;
     };
@@ -83,7 +83,7 @@ Plotly.newPlot("bar", databar, layout)
     }
 
 
-});
+};
 //Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual
 
 // Use `sample_values` as the values for the bar chart.
