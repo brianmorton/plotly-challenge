@@ -16,13 +16,14 @@
     function optionChanged() {
     d3.event.preventDefault()
     d3.json("samples.json").then((x) => {
-
+    var metadata = x.metadata;
+    var samples = x.samples;
     var dropdownMenu = d3.select("#selDataset");
     // Assign the value of the dropdown menu option to a variable
     var idselected = dropdownMenu.property("value");
     console.log(idselected)
-    demoindex;
-    samplesindex;
+    demoindex(idselected,metadata);
+    samplesindex(idselected, samples);
     })
     var index_pos_demo = 0;
     var index_pos_samp = 0;
@@ -32,8 +33,8 @@
     //index pos check log
 //console.log(metadata[0])
    // demo table info pulled
-   function demoindex (idselected){
-        d3.event.preventDefault()
+   function demoindex (idselected,metadata){
+        console.log(idselected)
         if (metadata.id !== idselected)
             index +=1;
         else if (metadata.id === idselected)
@@ -42,10 +43,11 @@
         };
     var demo_values = metadata[index_pos_demo] 
     console.log(demo_values);
-    return demo_values
+   
    };
-   function samplesindex (idselected){
-    d3.event.preventDefault()
+   function samplesindex (idselected,samples){
+    //d3.event.preventDefault()
+    console.log(idselected)
     if (samples.id !== idselected)
         index2 +=1;
     else if(samples.id === idselected)
@@ -54,7 +56,7 @@
     };
     var samples_values = samples[index_pos_samp]
     console.log(samples_values);
-    barbuild
+    barbuild(samples_values)
     };
 
 // code for checking charts  
