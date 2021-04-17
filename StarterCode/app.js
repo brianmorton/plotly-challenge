@@ -67,12 +67,12 @@
     function barbuild (samples_pass) {
     var bar = d3.select("#bar");
     var otu_bar_labels = samples_pass.otu_ids;
-    var otusorted = otu_bar_labels.reverse()
+    var otusorted = otu_bar_labels.map()
     var otu_ids = otusorted.slice(0, 10);
 //sort sample values and get 10
         var sample_store = samples_pass.sample_values
-        var sv_reverse = sample_store.reverse()
-        var sample_value = sv_reverse.slice(0,10)
+        var sv_map = sample_store.map()
+        var sample_value = sv_map.slice(0,10)
 
 
 
@@ -132,8 +132,10 @@ function demo_build(demo_values){
      Object.entries(demo_values).forEach(function([key, value]) {
   //Append to cell in the row
   var row = tbody.append("tr");
-  //append text to cell
-    row.text(key,value);
+  row.text(key)
+  //append text
+   row = tbody.append("td");
+    row.text(value);
      });
    };
 };
