@@ -133,7 +133,7 @@ function demo_build(demo_values){
   //Append to cell in the row
   var row = tbody.append("tr");
   //append text to cell
-      cell.text(key,value);
+    row.text(key,value);
      });
    };
 };
