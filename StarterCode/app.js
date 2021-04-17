@@ -57,6 +57,7 @@
     var samples_pass = samples[index_pos_samp]
     console.log(samples_pass);
     barbuild(samples_pass)
+    demo_build(demo_values)
     };
 
 // code for checking charts  
@@ -125,4 +126,14 @@ var trace2 = {
 // {var bar = d3.select("#sample-metadata")
     
 // }
+function demo_build(demo_values){
+    tbody.html("");
+    //d3 foreach append tr for object
+     Object.entries(demo_values).forEach(function([key, value]) {
+  //Append to cell in the row
+  var row = tbody.append("tr");
+  //append text to cell
+      cell.text(key,value);
+     });
+   };
 };
