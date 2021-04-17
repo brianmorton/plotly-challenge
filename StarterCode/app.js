@@ -88,32 +88,36 @@ var databar = trace1;
 var layout = {
     title: "Bar Chart",
 }
-Plotly.newPlot("bar", databar, layout)          
+Plotly.newPlot("bar", databar, layout) 
+bubblebuild(otu_ids,sample_value, otu_labels)         
     }
-};
-//Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual
 
-// Use `sample_values` as the values for the bar chart.
-
-// * Use `otu_ids` as the labels for the bar chart.
-
-// * Use `otu_labels` as the hovertext for the chart.
-
-
+  
 //bubble chart function
-
-//var bubble = d3.select("#bubble")
-
-// * Use `otu_ids` for the x values.
-
-// * Use `sample_values` for the y values.
-
-// * Use `sample_values` for the marker size.
-
-// * Use `otu_ids` for the marker colors.
-
-// * Use `otu_labels` for the text values.
-
+function bubblebuild(otu_ids,sample_value, otu_labels)  {
+var bubble = d3.select("#bubble")
+var trace2 = {
+    x: otu_ids,
+    y: sample_value,
+    text:otu_labels, 
+    mode: 'markers',
+    marker: {
+      size: sample_value,
+      color: otu_ids,
+    }
+  };
+  
+  var data = [trace2];
+  
+  var layout = {
+    title: 'Marker Size',
+    showlegend: false,
+    height: 600,
+    width: 600
+  };
+  
+  Plotly.newPlot('bubble', data, layout);
+}
 
 // //function for demographic table creation/key value pairs
 
@@ -121,3 +125,4 @@ Plotly.newPlot("bar", databar, layout)
 // {var bar = d3.select("#sample-metadata")
     
 // }
+};
