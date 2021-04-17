@@ -43,7 +43,7 @@
         };
     var demo_values = metadata[index_pos_demo] 
     console.log(demo_values);
-   
+    demo_build(demo_values)
    };
    function samplesindex (idselected,samples){
     //d3.event.preventDefault()
@@ -57,7 +57,7 @@
     var samples_pass = samples[index_pos_samp]
     console.log(samples_pass);
     barbuild(samples_pass)
-    demo_build(demo_values)
+
     };
 
 // code for checking charts  
@@ -127,7 +127,7 @@ var trace2 = {
     
 // }
 function demo_build(demo_values){
-    tbody.html("");
+    var tbody = d3.select("#sample-metadata");
     //d3 foreach append tr for object
      Object.entries(demo_values).forEach(function([key, value]) {
   //Append to cell in the row
