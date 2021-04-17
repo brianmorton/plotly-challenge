@@ -3,7 +3,7 @@
  var firstrun = true
  //import statement
 d3.json("samples.json").then((x) => {
-    console.log(x)
+   // console.log(x)
     var names = x.names;
     //assign to global
      
@@ -20,8 +20,6 @@ d3.json("samples.json").then((x) => {
     //function for checking value from dropdown
     function optionChanged() {
             
-    
-
             var dropdownMenu = d3.select("#selDataset");
             // Assign the value of the dropdown menu option to a variable
             var idselected = dropdownMenu.property("value");
@@ -31,75 +29,66 @@ d3.json("samples.json").then((x) => {
     }
 
 
-
-
    // demo table info pulled
-   function demoindex(idselected){
-       console.log(x);
-       var metadata = x.metadata;
-       
-      var filtmetadata = metadata.filter(obj => obj.id == idselected);
-      console.log(filtmetadata);
-        var filtered_meta = filtmetadata[0]
-        console.log(filtered_meta);
+        function demoindex(idselected){
+       //console.log(x);
+         var metadata = x.metadata;
+         var filtmetadata = metadata.filter(obj => obj.id == idselected);
+         //console.log(filtmetadata);
+         var filtered_meta = filtmetadata[0];
+        //console.log(filtered_meta);
+        demo_build(filtered_meta)
+        };
 
 
-        //console.log(idselected)
-    
-
-    //console.log(demo_values);
-    demo_build(filtered_meta)
-   };
-   function samplesindex(idselected,samples){
-    //d3.event.preventDefault()
-    //console.log(idselected)
-    if (samples.id !== idselected)
-        index2 +=1;
-    else if(samples.id === idselected)
-    {
-        index_pos_samp = index2;
-    };
-    var samples_pass = samples[index_pos_samp]
-    //console.log(samples_pass);
-    barbuild(samples_pass)
+   function samplesindex(idselected){
+        //console.log(x);
+        var samples = x.samples;
+        var filtsamples = samples.filter(obj => obj.id == idselected);
+        //console.log(filtsamples);
+         var filtered_samp = filtsamples[0];
+        //console.log(filtered_samp);
+        barbuild(filtered_samp)
 
     };
 
 //horizontal bar chart function
+
     //sort otu ids and get 10
-    function barbuild(samples_pass) {
-    var bar = d3.select("#bar");
-    var otu_bar_labels = samples_pass.otu_ids;
-    var otusorted = otu_bar_labels.reverse()
-    var otu_ids = otusorted.slice(0, 10);
+    function barbuild(filtered_samp) {
+    //console.log(filtered_samp);  
+        var otu_bar_labels = filtered_samp.otu_ids;
+        var otu_ids = otu_bar_labels.slice(0, 10);
         //console.log(otu_ids);
-//sort sample values and get 10
-        var sample_store = samples_pass.sample_values
-        var sv_reverse = sample_store.reverse()
-        var sample_value = sv_reverse.slice(0,10)
+
+        //sort sample values and get 10
+        var sample_store = filtered_samp.sample_values
+        var sample_value = sample_store.slice(0,10)
         //console.log(sample_value);
 
-
-        var otu_labels =  samples_pass.otu_labels
+        //grab otu labels
+        var otu_filt =  filtered_samp.otu_labels
+        var otu_labels = otu_filt.slice(0, 10);
         //console.log(otu_labels);
-var trace1 = {x: otu_ids,
-    y: sample_value,
-    text: otu_labels,
-    type: "bar"
-            }
-var data = trace1;
 
-var layout = {
-    title: "Bar Chart",
-}
-Plotly.newPlot("bar", data, layout) 
-bubblebuild(otu_ids,sample_value, otu_labels)         
+        //build trace
+        var trace1 = {x: otu_ids,
+        y: sample_value,
+        text: otu_labels,
+        type: "bar"
+        }
+        var data = trace1;
+            console.log(data)
+            // var layout = {
+            // title: "Bar Chart",
+            // }
+            Plotly.newPlot("bar", data) 
+            bubblebuild(otu_ids,sample_value, otu_labels)         
     }
 
   
 //bubble chart function
 function bubblebuild(otu_ids,sample_value, otu_labels)  {
-var bubble = d3.select("#bubble")
 var trace2 = {
     x: otu_ids,
     y: sample_value,
@@ -107,7 +96,7 @@ var trace2 = {
     mode: 'markers',
     marker: {
       size: sample_value,
-      color: otu_ids,
+      color: otu_ids
     }
   };
   
@@ -140,7 +129,7 @@ function demo_build(filtered_meta){
      });
    } else {
     var tbody = d3.select("#sample-metadata");
-    //d3 foreach append tr for object
+    //d3 foreach 
      Object.entries(filtered_meta).forEach(function([key, value]) {
   //Append key to cell in the row
         row.text(key);
