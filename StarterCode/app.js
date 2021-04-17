@@ -67,12 +67,12 @@
     function barbuild (samples_pass) {
     var bar = d3.select("#bar");
     var otu_bar_labels = samples_pass.otu_ids;
-    var otusorted = otu_bar_labels.map()
+    var otusorted = otu_bar_labels.reverse()
     var otu_ids = otusorted.slice(0, 10);
 //sort sample values and get 10
         var sample_store = samples_pass.sample_values
-        var sv_map = sample_store.map()
-        var sample_value = sv_map.slice(0,10)
+        var sv_reverse = sample_store.reverse()
+        var sample_value = sv_reverse.slice(0,10)
 
 
 
