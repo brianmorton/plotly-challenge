@@ -21,7 +21,7 @@
     var dropdownMenu = d3.select("#selDataset");
     // Assign the value of the dropdown menu option to a variable
     var idselected = dropdownMenu.property("value");
-    console.log(idselected)
+    //console.log(idselected)
     demoindex(idselected,metadata);
     samplesindex(idselected, samples);
     })
@@ -34,7 +34,7 @@
 //console.log(metadata[0])
    // demo table info pulled
    function demoindex (idselected,metadata){
-        console.log(idselected)
+        //console.log(idselected)
         if (metadata.id !== idselected)
             index +=1;
         else if (metadata.id === idselected)
@@ -42,12 +42,12 @@
             index_pos_demo = index;
         };
     var demo_values = metadata[index_pos_demo] 
-    console.log(demo_values);
+    //console.log(demo_values);
     demo_build(demo_values)
    };
    function samplesindex (idselected,samples){
     //d3.event.preventDefault()
-    console.log(idselected)
+    //console.log(idselected)
     if (samples.id !== idselected)
         index2 +=1;
     else if(samples.id === idselected)
@@ -55,7 +55,7 @@
         index_pos_samp = index2;
     };
     var samples_pass = samples[index_pos_samp]
-    console.log(samples_pass);
+    //console.log(samples_pass);
     barbuild(samples_pass)
 
     };
@@ -69,27 +69,27 @@
     var otu_bar_labels = samples_pass.otu_ids;
     var otusorted = otu_bar_labels.reverse()
     var otu_ids = otusorted.slice(0, 10);
+        console.log(otu_ids);
 //sort sample values and get 10
         var sample_store = samples_pass.sample_values
         var sv_reverse = sample_store.reverse()
         var sample_value = sv_reverse.slice(0,10)
-
+        console.log(sample_value);
 
 
         var otu_labels =  samples_pass.otu_labels
-
+        console.log(otu_labels);
 var trace1 = {x: otu_ids,
     y: sample_value,
     text: otu_labels,
     type: "bar"
             }
-
-var databar = trace1;
+var data = trace1;
 
 var layout = {
     title: "Bar Chart",
 }
-Plotly.newPlot("bar", databar, layout) 
+Plotly.newPlot("bar", data, layout) 
 bubblebuild(otu_ids,sample_value, otu_labels)         
     }
 
@@ -108,7 +108,7 @@ var trace2 = {
     }
   };
   
-  var data = [trace2];
+  var data = trace2;
   
   var layout = {
     title: 'Marker Size',
@@ -122,18 +122,14 @@ var trace2 = {
 
 // //function for demographic table creation/key value pairs
 
-// function demo_build(demo_values){
-// {var bar = d3.select("#sample-metadata")
-    
-// }
 function demo_build(demo_values){
     var tbody = d3.select("#sample-metadata");
     //d3 foreach append tr for object
      Object.entries(demo_values).forEach(function([key, value]) {
-  //Append to cell in the row
+  //Append key to cell in the row
   var row = tbody.append("tr");
   row.text(key)
-  //append text
+  //append value text
    row = tbody.append("td");
     row.text(value);
      });
