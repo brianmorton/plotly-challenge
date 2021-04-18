@@ -35,7 +35,6 @@ d3.json("samples.json").then((x) => {
         demo_build(filtered_meta)
         };
 
-
    function samplesindex(idselected){
         //console.log(x);
         var samples = x.samples;
@@ -81,7 +80,6 @@ d3.json("samples.json").then((x) => {
             bubblebuild(otu_ids,sample_value, otu_labels)         
     }
 
-  
 //bubble chart function
 function bubblebuild(otu_ids,sample_value, otu_labels)  {
 var trace2 = {
@@ -91,7 +89,8 @@ var trace2 = {
     mode: 'markers',
     marker: {
       size: sample_value,
-      color: otu_ids
+      color: otu_ids,
+      type: 'scatter'
     }
   };
   
@@ -107,7 +106,6 @@ var trace2 = {
   Plotly.newPlot('bubble', data, layout);
 }
 
-
 // //function for demographic table creation/key value pairs
 function demo_build(filtered_meta){
    
@@ -115,14 +113,9 @@ function demo_build(filtered_meta){
     tbody.text("");
     //d3 foreach append tr for object
      Object.entries(filtered_meta).forEach(function([key, value]) {
-  //Append key to cell in the row
+  //Append key/value to cell in the row
   var row = tbody.append("tr");
-  row.text(key);
-  //append value text
-   row = tbody.append("td");
-    row.text(value);
+  row.text([key, value]);
      });
     };
 });
-
-     
