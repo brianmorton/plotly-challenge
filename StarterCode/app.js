@@ -1,11 +1,7 @@
- //Global variables
- 
- var firstrun = true
  //import statement
 d3.json("samples.json").then((x) => {
    // console.log(x)
     var names = x.names;
-    //assign to global
      
    // console.log(metadata);
    // console.log(samples);
@@ -27,7 +23,6 @@ d3.json("samples.json").then((x) => {
             demoindex(idselected);
             samplesindex(idselected);
     }
-
 
    // demo table info pulled
         function demoindex(idselected){
@@ -112,30 +107,22 @@ var trace2 = {
   Plotly.newPlot('bubble', data, layout);
 }
 
-// //function for demographic table creation/key value pairs
 
+// //function for demographic table creation/key value pairs
 function demo_build(filtered_meta){
-    if (firstrun = true){
-        firstrun = false;
+   
     var tbody = d3.select("#sample-metadata");
+    tbody.text("");
     //d3 foreach append tr for object
      Object.entries(filtered_meta).forEach(function([key, value]) {
   //Append key to cell in the row
   var row = tbody.append("tr");
-  row.text(key)
+  row.text(key);
   //append value text
    row = tbody.append("td");
     row.text(value);
      });
-   } else {
-    var tbody = d3.select("#sample-metadata");
-    //d3 foreach 
-     Object.entries(filtered_meta).forEach(function([key, value]) {
-  //Append key to cell in the row
-        row.text(key);
-  //append value text
-        row.text(value);
-                    });
-        };
     };
 });
+
+     
