@@ -78,7 +78,8 @@ d3.json("samples.json").then((x) => {
         text: otu_labels,
         type: "bar"
         }
-        var data = trace1;
+        var data = [trace1];
+
             console.log(data)
             // var layout = {
             // title: "Bar Chart",
@@ -101,7 +102,7 @@ var trace2 = {
     }
   };
   
-  var data = trace2;
+  var data = [trace2];
   
   var layout = {
     title: 'Marker Size',
