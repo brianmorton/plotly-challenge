@@ -9,7 +9,14 @@ d3.json("samples.json").then((x) => {
    Object.entries(names).forEach(([namekey,namevalue])=>{
        select.append('option').text(namevalue);
    })
-   
+   function init()
+      {
+        idselected = 940
+        demoindex(idselected);
+        samplesindex(idselected);
+      }
+      init();
+
     //dropdown value selector
     select.on("change", optionChanged);
 
